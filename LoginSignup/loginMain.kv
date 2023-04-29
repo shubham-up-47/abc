@@ -1,0 +1,134 @@
+ 
+ 
+
+windowManager:                # specifying all possible windows
+    loginWindow:           
+    signupWindow:
+    logDataWindow:
+
+
+
+<loginWindow>:                # window1
+    email : email             # variable1
+    pwd : pwd                 # variable2
+    
+    FloatLayout:              # layout type
+        size: root.width, root.height   # dimentions
+
+        Label:                # textView1
+            text : "EMAIL: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x":0.25, "top":0.9}
+        TextInput:            # textInput1
+            id : email        # id1 
+            multiline :False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.9}
+
+        Label:                # textView2
+            text : "PASSWORD: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.25, "top" : 0.7}
+        TextInput:            # textInput2
+            id : pwd          # id2
+            multiline :False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.7}
+
+        Button:              # button1
+            text : "Create an account"
+            size_hint : 0.4, 0.1
+            pos_hint : {"x" : 0.33, "top" : 0.4}
+            on_release: 
+                app.root.current = 'signup'                      # move to signup page
+                root.manager.transition.direction = "left"       # transition type
+
+        Button:              # button2  
+            text : "LOGIN"
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.39, "top" : 0.2}
+            on_release: 
+                root.validate()                                  # validate input data for logIn                 
+                root.manager.transition.direction = "up"         # transition type
+  
+
+  
+<signupWindow>:            # window2
+    name2 : name2          # variable1 (we can't use name variable, bcz it is used to modify nameOfCurrentWindow)
+    email : email          # variable2
+    pwd : pwd              # variable3
+
+    FloatLayout:              # layout type
+        Label:                # textView1
+            text : "NAME: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x":0.25, "top":0.9}
+        TextInput:            # textInput1
+            id : name2        # id1
+            multiline : False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.9}
+
+        Label:                # textView2
+            text : "EMAIL: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.25, "top" : 0.7}
+        TextInput:            # textInput2
+            id : email        # id2
+            multiline : False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.7}
+
+        Label:                # textView3
+            text : "PASSWORD: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.25, "top" : 0.5}
+        TextInput:            # textInput3
+            id : pwd          # id3
+            multiline : False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.5}
+
+        Button:               # button1
+            text : "SUBMIT"
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.39, "top" : 0.28}
+            on_press :
+                root.signupbtn()                                  # store input data for signUp 
+                root.manager.transition.direction = "right"       # transition type
+  
+
+  
+<logDataWindow>:            # window3         
+    info : info             # variable1
+
+    FloatLayout:            # layout type
+        Label:              # textView1
+            id : info       # id1
+            size_hint : 0.8, 0.2
+            pos_hint : {"x" : 0.15, "top" : 0.8}
+            text : "SUCCESSFULLY LOGGED IN"
+
+        Button:             # button1
+            text : "Login"
+            size_hint : 0.4, 0.1
+            pos_hint : {"x" : 0.33, "top" : 0.55}
+            on_release: 
+                app.root.current = 'login'                       # move to login page
+                root.manager.transition.direction = "down"       # transition type
+                 
+        Button:             # button2
+            text : "Create new account"
+            size_hint : 0.4, 0.1
+            pos_hint : {"x" : 0.33, "top" : 0.4}
+            on_release: 
+                app.root.current = 'signup'                      # move to signup page
+                root.manager.transition.direction = "down"       # transition type
+  
+
+   
+<P>:             # popup
+    Label:
+        text : "Please enter valid information"
+        size_hint : 0.2, 0.1
+        pos_hint : {"x" : 0.3, "top" : 0.8}
